@@ -51,7 +51,7 @@ public class Main {
         table.addData(1, 0.944f, 0.248f,Genres.rap_metal);
 */
         DBConnection conn = new DBConnection();
-        while (true) {
+
 
 
             ArrayList<Song> foundSongs = conn.listener();
@@ -71,7 +71,7 @@ public class Main {
                 recommendation.printRecommended(recSongs);
                 conn.insertIntoRecommend(recSongs);
             }
-        }
+
         //table.PrettyPrint();
 
 
