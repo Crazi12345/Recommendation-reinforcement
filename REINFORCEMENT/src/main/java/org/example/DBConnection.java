@@ -1,6 +1,7 @@
 package org.example;
 
 import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Strings;
+
 import java.util.*;
 import java.io.*;
 import java.math.BigDecimal;
@@ -79,23 +80,23 @@ public class DBConnection {
         return false;
     }
 
-    public void insertIntoRecommend(ArrayList<Song> songs){
+    public void insertIntoRecommend(ArrayList<Song> songs) {
         try {
             Collections.shuffle(songs);
             ArrayList<String> songNames = new ArrayList<>();
             ArrayList<String> artistNames = new ArrayList<>();
-            for (int i = 0; i< songs.size();i++){
+            for (int i = 0; i < songs.size(); i++) {
                 songNames.add(songs.get(i).getSongName());
                 artistNames.add(songs.get(i).getArtist());
             }
             String[] strings1 = songNames.toArray(new String[songNames.size()]);
-            Array songArr = connection.createArrayOf("VARCHAR",strings1);
+            Array songArr = connection.createArrayOf("VARCHAR", strings1);
             String[] strings2 = artistNames.toArray(new String[artistNames.size()]);
-            Array artistArr = connection.createArrayOf("VARCHAR",strings2);
+            Array artistArr = connection.createArrayOf("VARCHAR", strings2);
             PreparedStatement stmt = connection.prepareStatement("insert into suggested_songs(songs,artists,model,updated_at,created_at) values(?,?,?,now(),now());");
-            stmt.setArray(1,songArr );
-            stmt.setArray(2,artistArr);
-            stmt.setString(3,songs.get(0).getModel() );
+            stmt.setArray(1, songArr);
+            stmt.setArray(2, artistArr);
+            stmt.setString(3, songs.get(0).getModel());
             stmt.execute();
 
             //System.out.println(resultSet.getString("track_name"));

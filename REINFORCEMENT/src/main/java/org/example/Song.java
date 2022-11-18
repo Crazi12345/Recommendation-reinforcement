@@ -32,9 +32,11 @@ public class Song {
     public String getArtist() {
         return artist;
     }
-    public String getGenre(){
+
+    public String getGenre() {
         return genre;
     }
+
     public String getModel() {
         return model;
     }

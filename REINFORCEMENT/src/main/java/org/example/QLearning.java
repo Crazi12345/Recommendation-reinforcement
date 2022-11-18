@@ -8,7 +8,7 @@ public class QLearning {
 
     private int maxQ = 1;
 
-    public QLearning(double LR, double DF){
+    public QLearning(double LR, double DF) {
 
         this.learningRate = LR;
 
@@ -16,9 +16,9 @@ public class QLearning {
 
     }
 
-    public double calculate(double currentValue, double reward){
+    public double calculate(double currentValue, double reward) {
 
-        double newQ = currentValue+learningRate*(reward+dicountFactor*maxQ-currentValue);
+        double newQ = currentValue + learningRate * (reward + dicountFactor * maxQ - currentValue);
 
         return newQ;
 

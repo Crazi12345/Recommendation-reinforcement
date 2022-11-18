@@ -57,19 +57,23 @@ public class Recommendation {
         for (int i = 0; i < genresDoubleHashMap.size(); i++) {
             double score = genresDoubleHashMap.get(Genres.values()[i]);
             if (score == high) {
+
                 topThree.add(Genres.values()[i]);
+                break;
             }
         }
         for (int i = 0; i < genresDoubleHashMap.size(); i++) {
             double score = genresDoubleHashMap.get(Genres.values()[i]);
-            if (score == mid && mid !=0) {
+            if (score == mid && mid != 0) {
                 topThree.add(Genres.values()[i]);
+                break;
             }
         }
         for (int i = 0; i < genresDoubleHashMap.size(); i++) {
             double score = genresDoubleHashMap.get(Genres.values()[i]);
             if (score == low && score > 0.5) {
                 topThree.add(Genres.values()[i]);
+                break;
             }
         }
 
@@ -161,9 +165,8 @@ public class Recommendation {
                         double valence = 0.5;
                         BigDecimal valenceComlumn = rs.getBigDecimal("valence");
                         try {
-                             valence = valenceComlumn.doubleValue();
-                        }
-                        catch (NullPointerException e){
+                            valence = valenceComlumn.doubleValue();
+                        } catch (NullPointerException e) {
                             System.out.println("IT WAS NULL");
                         }
                         boolean isValenceFound = false;
@@ -174,24 +177,23 @@ public class Recommendation {
                         } else if (valence > profileValues.get(profileFromGenre[1].charAt(3))) {
                             isValenceFound = true;
                         }
-                            if(isValenceFound) {
-                                String name = rs.getString("track_name");
-                                String artist = rs.getString("artist_individual");
+                        if (isValenceFound) {
+                            String name = rs.getString("track_name");
+                            String artist = rs.getString("artist_individual");
 
-                                String uri = rs.getString("uri");
-                                if (!URIs.contains(uri)) {
-                                    if (recommendedSize<5){
-                                        URIs.add(uri);
-                                        recommended.add(new Song(name, artist, genre,valence,energy));
-                                        songCounter++;
-                                    }
-                                    else if(songCounter < recommendedSize/(2*i+1)) {
-                                        URIs.add(uri);
-                                        recommended.add(new Song(name, artist, genre,valence,energy));
-                                        songCounter++;
-                                    }
+                            String uri = rs.getString("uri");
+                            if (!URIs.contains(uri)) {
+                                if (recommendedSize < 5) {
+                                    URIs.add(uri);
+                                    recommended.add(new Song(name, artist, genre, valence, energy));
+                                    songCounter++;
+                                } else if (songCounter < recommendedSize / (2 * i + 1)) {
+                                    URIs.add(uri);
+                                    recommended.add(new Song(name, artist, genre, valence, energy));
+                                    songCounter++;
                                 }
                             }
+                        }
                     }
 
 
@@ -206,7 +208,7 @@ public class Recommendation {
 
     public void printRecommended(ArrayList<Song> rec) {
         for (Song val : rec) {
-         val.PrettyPrint();
+            val.PrettyPrint();
         }
     }
 

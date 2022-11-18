@@ -1,4 +1,5 @@
 package org.example;
+
 import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -48,7 +49,8 @@ public class Main {
         table.addData(1,0.987f,0.297f, Genres.alternative_metal);
         table.addData(1, 0.858f, 0.506f,Genres.ohio_hip_hop);
         table.addData(1, 0.944f, 0.248f,Genres.rap_metal);
-*/  DBConnection conn = new DBConnection();
+*/
+        DBConnection conn = new DBConnection();
         while (true) {
 
 
@@ -56,7 +58,8 @@ public class Main {
             System.out.println(foundSongs);
             if (!foundSongs.isEmpty()) {
                 for (Song s : foundSongs) {
-                    table.addData( 1, (float) s.getEnergy(), (float) s.getValence(), s.getGenre());
+                    s.PrettyPrint();
+                    table.addData(1, (float) s.getEnergy(), (float) s.getValence(), s.getGenre());
                 }
                 //Song s = new Song(foundSongs.get(0).getSongName(),foundSongs.get(0).getArtist(),foundSongs.get(0).getGenre(),(float)foundSongs.get(0).getValence(),(float)foundSongs.get(0).getEnergy());
 
@@ -69,8 +72,8 @@ public class Main {
                 conn.insertIntoRecommend(recSongs);
             }
         }
-            //table.PrettyPrint();
+        //table.PrettyPrint();
 
 
-        }
     }
+}

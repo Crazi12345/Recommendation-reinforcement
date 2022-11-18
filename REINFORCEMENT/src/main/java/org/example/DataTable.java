@@ -54,7 +54,7 @@ public class DataTable {
         }
 
         for (int i = 0; i < genreLength; i++) {
-            if (this.decryptGenre(Genres.values()[i].name()).equals( genre)) {
+            if (this.decryptGenre(Genres.values()[i].name()).equals(genre)) {
                 energyTable[i][eng].add(value);
                 valenceTable[i][val].add(value);
                 continue;
@@ -69,6 +69,7 @@ public class DataTable {
         genre = genre.replace('Ø', '&');
         return genre;
     }
+
     public void PrettyPrint() {
         System.out.println();
         System.out.println("ENERGY-TABLE");
